@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock head %}
+
+
+{% block body %}
+
+    <form action="{% url 'post:create' %}" method="POST">
+        {% csrf_token %}
+    <input type="submit" value = "Create a new post">
+
+    <ol>
+    {% for post in posts %}    
+        <li>
+        <a href = '{% url "post:detail" post.id %}'> Question: {{ post.title }} </a><br />
+    </li>
+    {% endfor %}
+    </ol>
+
+{% endblock body %}

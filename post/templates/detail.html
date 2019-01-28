@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+this is the detail page
+{% endblock head %}
+
+{% block body %}
+
+    {{ post.title }}
+    {{ post.date_created }}
+    {{ post.content }}
+
+
+    <form action="{% url 'post:comment' %}" method="POST">
+        {% csrf_token %}
+    <input type="submit" value = "Comment">
+    <form action="{% url 'post:update' %}" method="POST">
+        {% csrf_token %}
+    <input type="submit" value = "Update">
+
+    <br />
+    comment:
+    <br />
+
+    {% for comment in post.comments.all %}
+        {{comment.content}}<br />
+
+{% endfor %}
+
+{% endblock body %}
